@@ -20,7 +20,7 @@
 }
 
 .logo{
-    color: #85ad6f;
+    color: #7ba365;
     font-size: 35px;
     font-family: 'Courier New', Courier, monospace;
     padding-left: 15px;
@@ -57,7 +57,7 @@ ul li a{
 }
 
 .button{
-    background-color: #85ad6f;
+    background-color: #7ba365;
     border: none;
     color:white;
     padding: 15px 32px;
@@ -70,26 +70,39 @@ ul li a{
     border-radius: 15px;
 }
 
+hr.divider{
+    border-bottom: 3px solid #adb3a5;
+    margin: 15px;
+    width: 1200px;
+}
+
 .content{
     width: 1200px;
     height: auto;
     margin: auto;
     color: black;
-    position: absolute;
+    position: relative;
 }
 
 .content .par{
-    padding-left: 15px;
-    padding-bottom: 25px;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
     font-family: 'Courier New', Courier, monospace;
-    line-height: 15px;
+    line-height: 25px;
+}
+
+hr.border{
+    border-bottom: 3px solid #adb3a5;
+    margin: 20px;
+    width: 470px;
 }
 
 .content h1{
     font-family:'Courier New', Courier, monospace;
     font-size: 55px;
-    padding-left: 185px;
-    margin-top: 20%;
+    padding-left: 20px;
+    margin-top: 15%;
     letter-spacing: 2px;
 }
 
@@ -177,3 +190,4 @@ ul li a{
 .login-form button:hover {
     background-color: #218838;
 }
+
