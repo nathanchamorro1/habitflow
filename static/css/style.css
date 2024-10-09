@@ -4,7 +4,7 @@
 }
 
 .main{
-    width: 100%;
+    width: 100%;    
 }
 
 .navbar{
@@ -188,6 +188,84 @@ hr.border{
 }
 
 .login-form button:hover {
-    background-color: #218838;
+   background-color: #218838;
 }
 
+.color {
+    width: 350px;
+    margin: 0 auto;
+  }
+  .color_container {
+    position: absolute;
+    margin-left: auto;
+    left: 36%;
+    top: 70%;
+    text-align: center;
+    line-height: 200%;
+
+  }
+  .color li {
+    margin: 0 15px 0 0;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    border-radius: 100%;
+  }
+  .color .red    {background: #fa5a5a;}
+  .color .yellow {background: #f0d264;}
+  .color .green  {background: #82c8a0;}
+  .color .cyan   {background: #7fccde;}
+  .color .blue   {background: #6698cb;}
+  .color .purple {background: #cb99c5;}
+
+
+.button_container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+  }
+  
+  .btn {
+    border: none;
+    border-radius: 30px;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    text-transform: none;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    font-size: 15px;
+    background-color: rgb(255, 255, 255);
+    padding: 17px 60px;
+    margin: 0 auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+  }
+  
+  .btn span {
+    position: relative; 
+    z-index: 1;
+  }
+  
+  .btn:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 450%;
+    width: 100%;
+    background: #85ad6f;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+    transform: translateX(-98%) translateY(-25%) rotate(90deg);
+  }
+  
+  .btn:hover:after {
+    -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+    transform: translateX(-9%) translateY(-25%) rotate(90deg);
+  }
+  
