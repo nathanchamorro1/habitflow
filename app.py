@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-app = Flask(__name__, template_folder = "/Users/nathanchamorro/Desktop/habitflow/templates")
+app = Flask(__name__, template_folder = "static/css")
 
 @app.route("/")
 def home():
