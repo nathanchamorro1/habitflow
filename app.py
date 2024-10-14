@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, UserMixin, login_required, logout_user, current_user
 
 app = Flask(__name__, template_folder = "static/css")
-app.config['SECRET_KEY'] = 'the_secret_key'
+app.config['SECRET_KEY'] = 'habitflowsecretkey'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 db = SQLAlchemy(app)
 login_manager = LoginManager()
