@@ -14,8 +14,13 @@
 
             <div class="menu">
                 <ul>
+                    {% if user.is_authenticated %}
+                        <li>Hello, {{ user.name }}!</li>
+                        <li><a href="{{ url_for('logout') }}">Log Off</a></li>
+                        {% else %}
                     <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
                     <li><a href="{{ url_for('login') }}"><button class="button">Log In</button></a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
