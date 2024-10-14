@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HabitFlow</title>
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">HabitFlow</h2>
+            </div>
+
+            <div class = "user">
+                <nav>
+                    <img src="images/Icon.jpg" class ="user-icon" onclick="toggleMenu()">
+                    <div class="menu-wrap" id="subMenu">
+                        <div class="menu-sub">
+                            <div class="user-info">
+                                <img src="images/Icon.jpg">
+                                <h3>insert name here</h3>
+                            </div>
+                            <p>&nbsp</p>
+                            <hr>
+
+                            <a href="#" class="menu-link">
+                                <img src="images/profile.png">
+                                <p>Edit Profile</p>
+                                <span>></span>
+                            </a>
+
+                            <a href="#" class="menu-link">
+                                <img src="images/setting.png">
+                                <p>Settings</p>
+                                <span>></span>
+                            </a>
+
+                            <a href="#" class="menu-link">
+                                <img src="images/quote.png">
+                                <p>Edit Quotes</p>
+                                <span>></span>
+                            </a>
+
+                            <a href="#" class="menu-link">
+                                <img src="images/logout.png">
+                                <p>Logout</p>
+                                <span>></span>
+                            </a>
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        <script>
+            let subMenu = document.getElementById("subMenu");
+
+            function toggleMenu(){
+                subMenu.classList.toggle("open-menu");
+            }
+        </script>
+    
+            
+</body>
+</html>
