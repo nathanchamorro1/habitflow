@@ -39,7 +39,7 @@ def signup():
         # Check if user already exists
         user = HabitUser.query.filter_by(email=email).first()
         if user:
-            flash('Sorry, that email address has been taken. Try another one.')
+            flash('Sorry, that email address has been taken. Try another one.', 'flash-error')
             return redirect(url_for('signup'))
 
         # Create a new user and add them to the database
@@ -47,7 +47,7 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
 
-        flash('Account successfully created. Welcome to HabitFlow!')
+        flash('Account successfully created. Welcome to HabitFlow!', 'flash-success')
         return redirect(url_for('login'))
 
     return render_template('signup.html')
@@ -62,13 +62,18 @@ def login():
         user = HabitUser.query.filter_by(email=email).first()
 
         if not user or user.password != password:
-            flash('Login error. Please check your email and password and try again.')
+            flash('Login error. Please check your email and password and try again.', 'flash-error')
             return redirect(url_for('login'))
 
         login_user(user)
-        return redirect(url_for('home'))
+        return redirect(url_for('tracker'))
 
     return render_template('login.html')
+
+@app.route('/tracker')
+@login_required
+def tracker():
+    return render_template('tracker.html')
 
 @app.route("/logout")
 @login_required
