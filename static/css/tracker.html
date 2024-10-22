@@ -2,8 +2,30 @@
 <html lang="en">
 <head>
     <title>HabitFlow</title>
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="static/css/style.cs">
+=======
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <style>
+        #overlay {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+>>>>>>> 92b0ce1 (Main)
 
+        .plus_container {
+            position: relative;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div class="main">
@@ -13,29 +35,15 @@
             </div>
 
             <div class="menu">
-                <ul>
-                    <li><a href="#">Sign Up</a></li>
-                    <li><a href="#"><button class="button">Log In</button></a></li>
-                </ul>
+                <ul></ul>
+                <li><a href="#">Sign Up</a></li>
+                <li><a href="#"><button class="button">Log In</button></a></li>
             </div>
         </div>
+
         <div class="content">
             <hr class="divider">
-            
-            <p class="par">
-            (counter)<br>
-            (plus)AddNewHabit
-            <br>
-            HabitName: userInput
-            <br>
-            Time selection List
-            <br>
-            Repeat: None, S M T W T F S
-            <br>
-            Alert: at time of event etc
-            </p>
-
-
+            <p class="par"><br></p>
 
             <div class="color_container">
                 <ul class="color">
@@ -50,10 +58,108 @@
             </div>
 
             <div class="button_container">
-                <button class="btn"><span>Habit D T </span></button>
-              </div>
+                <button class="btn" id="habitButton"><span>Habit D T</span></button>
+            </div>
 
+            <div class="plus_container">
+                <button class="plus" id="addButton"> + </button>
+
+                <section id="overlay">
+                    <form action="#" method="POST">
+                        <section class="habit">
+                            <label for="habit">Habit</label>
+                            <input type="text" name="habit" id="habit" placeholder="Enter habit">
+                        </section>
+
+                        <section class="day-selection">
+                            <label>Select Days:</label>
+                            <div class="days-container">
+                                <button type="button" class="day-btn" data-day="Sunday">S</button>
+                                <button type="button" class="day-btn" data-day="Monday">M</button>
+                                <button type="button" class="day-btn" data-day="Tuesday">T</button>
+                                <button type="button" class="day-btn" data-day="Wednesday">W</button>
+                                <button type="button" class="day-btn" data-day="Thursday">T</button>
+                                <button type="button" class="day-btn" data-day="Friday">F</button>
+                                <button type="button" class="day-btn" data-day="Saturday">S</button>
+                            </div>
+                        </section>
+
+                        <section class="time-selection">
+                            <label for="time">Select Time:</label>
+                            <input type="text" id="time" name="time" placeholder="__:__" 
+                                   maxlength="5" 
+                                   inputmode="numeric" 
+                                   required>
+                            <select name="ampm" id="ampm">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </section>
+
+                        <section class="alert">
+                            <label for="alert">Alert</label>
+                            <select name="alert" id="alert">
+                                <option value="atTime">At time of event</option>
+                                <option value="15minbf">15 mins before</option>
+                                <option value="30minbf">30 mins before</option>
+                                <option value="1hrbf">1 hour of event</option>
+                                <option value="2hrbf">2 hours before</option>
+                                <option value="1daybf">1 day before</option>
+                            </select>
+                        </section>
+
+                        <section class="submission">
+                            <input type="submit" value="Submit">
+                        </section>
+                    </form>
+                </section>
+            </div>
         </div>
     </div>
+
+    <script>
+        const addButton = document.getElementById('addButton');
+        const overlay = document.getElementById('overlay');
+        const habitButton = document.querySelector('.btn');
+        const colorContainer = document.querySelector('.color_container');
+
+        addButton.addEventListener('click', function() {
+            if (overlay.style.display === 'none' || overlay.style.display === '') {
+                overlay.style.display = 'block';
+            } else {
+                overlay.style.display = 'none';
+            }
+        });
+
+        habitButton.addEventListener('click', function() {
+            /*habitButton.classList.toggle('clicked');*/
+            colorContainer.style.opacity = '1';
+            colorContainer.style.visibility = 'visible';
+
+            setTimeout(function() {
+                colorContainer.style.opacity = '0';
+                colorContainer.style.visibility = 'hidden';
+            }, 5000);
+        });
+
+        document.getElementById('time').addEventListener('input', function(e) {
+            const value = e.target.value;
+            const timePattern = /^([01]\d|2[0-3]):[0-5]\d$/;
+
+            if (!timePattern.test(value)) {
+                e.target.setCustomValidity("Please enter a valid time in the format HH:MM (e.g., 09:45)");
+            } else {
+                e.target.setCustomValidity("");
+            }
+        });
+
+        const dayButtons = document.querySelectorAll('.day-btn');
+
+        dayButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                button.classList.toggle('selected');
+            });
+        });
+    </script>
 </body>
 </html>
