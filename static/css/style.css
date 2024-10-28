@@ -395,4 +395,74 @@ nav ul li{
     padding: 10px;
     border-radius: 5px;
 }
-  
+
+.card-wrap {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 42%;
+  height: 500px;
+  background-color: #f2f6f1;
+  border-radius: 10px;
+  padding: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-exit{
+    display: block;
+    width: 1.5%;
+    cursor: pointer;
+    top: 20%;
+    right: 30%;
+    position: fixed;
+}
+
+.profile-icon{
+    display: block;
+    width: 30%;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+}
+
+.profile-name{
+    box-sizing: border-box;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    height: 30px;
+    width: 30%;
+    padding: 12px 12px;
+}
+
+.profile-header h3{
+    text-align: center;
+    font-size: 30px;
+    margin-top: 0%;
+    display: relative;
+}
+
+.profile-save{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #7ba365;
+    cursor: pointer;
+    border: none;
+    color:white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 15px;
+}
