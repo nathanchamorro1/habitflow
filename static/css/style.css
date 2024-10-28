@@ -466,3 +466,64 @@ nav ul li{
     font-size: 16px;
     border-radius: 15px;
 }
+=======
+  
+=======
+.time-selection {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.time-selection label {
+    margin-right: 10px;
+}
+
+.time-selection input {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.time-selection select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.day-selection {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.days-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.day-btn {
+    background-color: #f0f0f0;
+    border: 2px solid #85ad6f;
+    color: black;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.day-btn.selected {
+    background-color: #85ad6f;
+    color: white;
+}
+
+.day-btn:hover {
+    background-color: #dcdcdc;
+}
+>>>>>>> 0ab31afa26ae159411e01cd281b4c3e90c6c1e3b
