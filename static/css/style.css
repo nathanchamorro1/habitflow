@@ -4,13 +4,17 @@
 }
 
 .main{
-    width: 100%;    
+    width: 100%;
 }
 
 .navbar{
     width: 1200px;
     height: 75px;
     margin: auto;
+}
+
+#overlay {
+    display: none;
 }
 
 .icon{
@@ -307,16 +311,28 @@ nav ul li{
 .color {
     width: 350px;
     margin: 0 auto;
-  }
-  .color_container {
-    position: absolute;
-    margin-left: auto;
-    left: 36%;
-    top: 70%;
-    text-align: center;
-    line-height: 200%;
 
   }
+  .color_container {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    z-index:10;
+    margin-left: auto;
+    margin-bottom: 20px;
+    left: 36%;
+    top: 50%;
+    transform: translateY(-135%);
+    text-align: center;
+    line-height: 200%;
+    transition: opacity 1s ease-in-out, visibility 0s linear 1s; 
+  }
+  .color_container ul.color {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
   .color li {
     margin: 0 15px 0 0;
     width: 30px;
@@ -332,14 +348,29 @@ nav ul li{
   .color .purple {background: #cb99c5;}
 
 
-.button_container {
+#overlay {
+    display: none;
     position: absolute;
-    left: 0;
-    right: 0;
     top: 100%;
-  }
-  
-  .btn {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.plus_container {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.btn {
+    z-index: 1;
     border: none;
     border-radius: 30px;
     display: block;
@@ -355,15 +386,17 @@ nav ul li{
     background-color: rgb(255, 255, 255);
     padding: 17px 60px;
     margin: 0 auto;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.20);
-  }
-  
-  .btn span {
-    position: relative; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
+    transition: all 0.5s ease-in-out;
+    width: 300px;
+}
+
+.btn span {
+    position: relative;
     z-index: 1;
-  }
-  
-  .btn:after {
+}
+
+.btn:after {
     content: "";
     position: absolute;
     left: 0;
@@ -371,17 +404,42 @@ nav ul li{
     height: 450%;
     width: 100%;
     background: #85ad6f;
-    -webkit-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
-    -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
-    transform: translateX(-98%) translateY(-25%) rotate(90deg);
+    transition: all 0.5s ease-in-out;
+    transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.btn:hover:after {
+    height: 725%;
+    transform: translateX(-5%) translateY(-25%) rotate(45deg);
+}
+
+.btn.clicked {
+    background-color: #85ad6f;
+    color: white;
+}
+
+.btn.clicked:after {
+    display: none;
+}
+
+  .plus {
+    margin: 0 15px 0 0;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border-radius: 100%;
   }
-  
-  .btn:hover:after {
-    -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
-    transform: translateX(-9%) translateY(-25%) rotate(90deg);
+  .plus_container {
+    position: absolute;
+    margin-bottom:20px;
+    left: 0;
+    right:0;
+    top: 150%;
+    text-align: center;
+    line-height: 200%;
   }
 
+<<<<<<< HEAD
   .flash-success {
     background-color: #d4edda;
     color: #155724;
@@ -395,6 +453,7 @@ nav ul li{
     padding: 10px;
     border-radius: 5px;
 }
+<<<<<<< HEAD
 
 .card-wrap {
   margin-left: auto;
