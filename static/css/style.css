@@ -439,7 +439,7 @@ nav ul li{
     line-height: 200%;
   }
 
-<<<<<<< HEAD
+/*HEAD*/
   .flash-success {
     background-color: #d4edda;
     color: #155724;
@@ -453,9 +453,9 @@ nav ul li{
     padding: 10px;
     border-radius: 5px;
 }
-<<<<<<< HEAD
+/*<<<<<<< HEAD*/
 
-.card-wrap {
+.card-sub {
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
@@ -474,11 +474,11 @@ nav ul li{
 
 .profile-exit{
     display: block;
-    width: 1.5%;
+    width: 5%;
     cursor: pointer;
-    top: 20%;
-    right: 30%;
-    position: fixed;
+    top: 5%;
+    right: 5%;
+    position: absolute;
 }
 
 .profile-icon{
@@ -525,9 +525,92 @@ nav ul li{
     font-size: 16px;
     border-radius: 15px;
 }
-=======
+
+.sub-settings{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 35%;
+  height: 500px;
+  background-color: #f2f6f1;
+  border-radius: 10px;
+  padding: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings-exit{
+    display: block;
+    width: 5%;
+    cursor: pointer;
+    top: 5%;
+    right: 5%;
+    position: absolute;
+}
+
+.settings-header h3{
+    text-align: center;
+    font-size: 30px;
+    margin-top: 0%;
+    display: relative;
+}
+
+.change-settings{
+    box-sizing: border-box;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    height: 30px;
+    width: 100%;
+    padding: 12px 12px;
+}
+
+.change-password{
+    box-sizing: border-box;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    height: 30px;
+    width: 100%;
+    padding: 12px 12px;
+}
+
+.change-number{
+    box-sizing: border-box;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    height: 30px;
+    width: 100%;
+    padding: 12px 12px;
+}
+
+.settings-save{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #7ba365;
+    cursor: pointer;
+    border: none;
+    color:white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 15px;
+}
+/*=======
   
-=======
+=======*/
 .time-selection {
     margin-top: 20px;
     display: flex;
@@ -585,4 +668,4 @@ nav ul li{
 .day-btn:hover {
     background-color: #dcdcdc;
 }
->>>>>>> 0ab31afa26ae159411e01cd281b4c3e90c6c1e3b
+/*>>>>>>> 0ab31afa26ae159411e01cd281b4c3e90c6c1e3b*/
