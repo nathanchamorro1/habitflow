@@ -347,18 +347,41 @@ nav ul li{
   .color .blue   {background: #6698cb;}
   .color .purple {background: #cb99c5;}
 
-
-#overlay {
+  #overlay {
     display: none;
     position: absolute;
-    top: 100%;
+    top: 300%;
     left: 50%;
-    transform: translateX(-50%);
-    width: 400px;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 400px;
     background-color: white;
     padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+#overlay.show {
+    display: block;
+    opacity: 1;
+}
+
+#overlay-background {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    z-index: 999;
+}
+
+#overlay-background.show {
+    display: block;
 }
 
 .plus_container {
@@ -384,11 +407,11 @@ nav ul li{
     font-weight: 700;
     font-size: 15px;
     background-color: rgb(255, 255, 255);
-    padding: 17px 60px;
+    padding: 25px 10px;
     margin: 0 auto;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
     transition: all 0.5s ease-in-out;
-    width: 300px;
+    width: 50%;
 }
 
 .btn span {
@@ -423,7 +446,7 @@ nav ul li{
 }
 
   .plus {
-    margin: 0 15px 0 0;
+    margin: 0 10px 0 0;
     width: 50px;
     height: 50px;
     display: inline-block;
@@ -612,7 +635,7 @@ nav ul li{
   
 =======*/
 .time-selection {
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
     align-items: center;
 }
@@ -622,7 +645,7 @@ nav ul li{
 }
 
 .time-selection input {
-    width: 60px;
+    width: 100%;
     padding: 5px;
     text-align: center;
     margin-right: 10px;
@@ -637,20 +660,27 @@ nav ul li{
 }
 
 .day-selection {
-    margin: 20px 0;
-    text-align: center;
-}
-
-.days-container {
     display: flex;
-    justify-content: center;
+    align-items: center;
     gap: 10px;
 }
 
+.day-selection label {
+    text-align: left;
+    margin-right: 5px;
+    margin-top: 30px;
+}
+
+.days-container {
+    display: flex; 
+    gap: 20px;
+    margin-top: 30px;
+}
+
 .day-btn {
-    background-color: #f0f0f0;
-    border: 2px solid #85ad6f;
-    color: black;
+    background-color: #ffffff;
+    border: 1px solid #333;
+    color: #333;
     font-size: 16px;
     width: 30px;
     height: 30px;
@@ -669,3 +699,55 @@ nav ul li{
     background-color: #dcdcdc;
 }
 /*>>>>>>> 0ab31afa26ae159411e01cd281b4c3e90c6c1e3b*/
+
+.alert {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+}
+.alert label {
+    margin-right: 10px;
+}
+
+.alert select {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.submission {
+    text-align: center;
+    margin-top: 20px;
+}
+.submission input[type="submit"] {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #7ba365;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submission input[type="submit"]:hover {
+    background-color: #85ad6f;
+    transform: translateY(-2px);
+}
+
+.submission input[type="submit"]:active {
+    background-color: #6b8e57;
+    transform: translateY(1px);
+}
