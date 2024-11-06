@@ -19,14 +19,14 @@
                         <div class="menu-sub">
                             <div class="user-info">
                                 <img src="images/Icon.jpg">
-                                <h3>{__name__}</h3>
+                                <h3>{{ user.name }}</h3>
                             </div>
                             <p>&nbsp</p>
                             <hr>
 
-                            <a href="#" class="menu-link">
+                            <a href="#card-wrap" class="menu-link">
                                 <img src="images/profile.png">
-                                <p>Edit Profile</p>
+                                <p>Profile</p>
                                 <span>></span>
                             </a>
 
@@ -38,7 +38,7 @@
 
                             <a href="#" class="menu-link">
                                 <img src="images/quote.png">
-                                <p>Edit Quotes</p>
+                                <p>Quotes</p>
                                 <span>></span>
                             </a>
 
@@ -52,6 +52,22 @@
                     </div>
                 </nav>
             </div>
+            
+                <div class="card-wrap">
+                    <div class="card-sub">
+                        <div class="profile-header">
+                            <img src="images/x.png" class ="profile-exit">
+                            <h3>Profile</h3>
+                            <img src="images/Icon.jpg" class ="profile-icon">
+                            <p>&nbsp</p>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required class="profile-name">
+                            <p>&nbsp</p>
+                            <button class="profile-save">Save</button>
+                        </div>
+                            
+                    </div>
+                </div>                 
+            
         <script>
             let subMenu = document.getElementById("subMenu");
 
