@@ -198,6 +198,7 @@ hr.border{
 
 .user{
     width: 100%;
+    z-index: 2;
 }
 
 nav{
@@ -455,7 +456,7 @@ nav ul li{
 }
 /*<<<<<<< HEAD*/
 
-.card-sub {
+.sub-profile {
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
@@ -541,6 +542,7 @@ nav ul li{
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 .settings-exit{
@@ -581,17 +583,6 @@ nav ul li{
     padding: 12px 12px;
 }
 
-.change-number{
-    box-sizing: border-box;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 15px;
-    height: 30px;
-    width: 100%;
-    padding: 12px 12px;
-}
-
 .settings-save{
     display: block;
     margin-left: auto;
@@ -608,6 +599,42 @@ nav ul li{
     font-size: 16px;
     border-radius: 15px;
 }
+
+.sub-quotes{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 65%;
+  height: 500px;
+  background-color: #f2f6f1;
+  border-radius: 10px;
+  padding: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.quotes-exit{
+    display: block;
+    width: 3.5%;
+    cursor: pointer;
+    top: 2%;
+    right: 2%;
+    position: absolute;
+}
+
+.quotes-header h3{
+    text-align: center;
+    font-size: 30px;
+    margin-top: 5%;
+    display: relative;
+}
+
+
 /*=======
   
 =======*/

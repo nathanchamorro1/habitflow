@@ -24,25 +24,25 @@
                             <p>&nbsp</p>
                             <hr>
 
-                            <a href="#card-wrap" class="menu-link">
+                            <a href="#card-wrap" class="menu-link" id="open-profile">
                                 <img src="images/profile.png">
                                 <p>Profile</p>
                                 <span>></span>
                             </a>
 
-                            <a href="#" class="menu-link">
+                            <a href="#" class="menu-link" id="open-settings">
                                 <img src="images/setting.png">
                                 <p>Settings</p>
                                 <span>></span>
                             </a>
 
-                            <a href="#" class="menu-link">
+                            <a href="#" class="menu-link" id="open-quotes">
                                 <img src="images/quote.png">
                                 <p>Quotes</p>
                                 <span>></span>
                             </a>
 
-                            <a href="#" class="menu-link">
+                            <a href="index.html" class="menu-link">
                                 <img src="images/logout.png">
                                 <p>Logout</p>
                                 <span>></span>
@@ -52,28 +52,113 @@
                     </div>
                 </nav>
             </div>
-            
-                <div class="card-wrap">
-                    <div class="card-sub">
-                        <div class="profile-header">
-                            <img src="images/x.png" class ="profile-exit">
-                            <h3>Profile</h3>
-                            <img src="images/Icon.jpg" class ="profile-icon">
-                            <p>&nbsp</p>
-                            <input type="text" id="name" name="name" placeholder="Your Name" required class="profile-name">
-                            <p>&nbsp</p>
-                            <button class="profile-save">Save</button>
-                        </div>
-                            
+                
+            <div class="profile-wrap" id ="show-profile">
+                <div class="sub-profile">
+                    <div class="profile-header">
+                        <img src="images/x.png" class ="profile-exit" id="profile-exit-btn">
+                        <h3>Profile</h3>
+                        <img src="images/Icon.jpg" class ="profile-icon">
+                        <p>&nbsp</p>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required class="profile-name">
+                        <p>&nbsp</p>
+                        <button class="profile-save">Save</button>
                     </div>
-                </div>                 
+                        
+                </div>
+            </div>
             
-        <script>
-            let subMenu = document.getElementById("subMenu");
+            <div class="settings-wrap" id = "show-settings">
+                <div class ="sub-settings">
+                    <div class ="settings-header">
+                        <img src="images/x.png" class ="settings-exit" id = "settings-exit-btn">
+                        <h3>Settings</h3>
+                        <p>&nbsp</p>
+                        <input type="email" id="email" name="email" placeholder="Email" required class="change-settings">
+                        <p>&nbsp</p>
+                        <input type="password" id="password" name="password" placeholder="Password" required class="change-password">
+                        <p>&nbsp</p>
+                        <button class="settings-save">Save</button>
+                    </div>
+                </div>  
+            </div> 
 
+            <div class="quotes-wrap" id = "show-quotes">
+                <div class ="sub-quotes">
+                    <div class ="quotes-header">
+                        <img src="images/x.png" class ="quotes-exit" id = "quotes-exit-btn">
+                        <h3>Quotes</h3>
+                        <p>&nbsp</p>
+                        <p>"Keep your face always toward the sunshine, and shadows will fall behind you." — Walt Whitman</p><br>
+                        <p>"You are never too old to set another goal or to dream a new dream." — C.S. Lewis</p><br>
+                        <p>"Believe you can and you're halfway there." — Theodore Roosevelt</p><br>
+                        <p>"If you prioritize yourself, you are going to save yourself." — Gabrielle Union</p><br>
+                        <p>"Optimism is the faith that leads to achievement. Nothing can be done without hope and confidence." — Helen Keller</p><br>
+                        <p>"Doubt kills more dreams than failure ever will." — Suzy Kassem</p><br>
+                        <p>"For every reason it's not possible, there are hundreds of people who have faced the same circumstances and succeeded." — Jack Canfield</p><br>
+                        <p>"Dreams are the touchstones of our characters." ― Henry David Thoreau</p><br>
+                        <p>"The secret of getting ahead is getting started." — Mark Twain</p><br>
+                        <p>"Don't judge each day by the harvest you reap but by the seeds that you plant." — Robert Louis Stevenson</p><br>
+                    </div>
+                </div>  
+            </div>
+                      
+        </div>
+    </div>
+        <script>
+            //opens and closes drop-down menu
+            let subMenu = document.getElementById("subMenu");
             function toggleMenu(){
                 subMenu.classList.toggle("open-menu");
             }
+
+            //opens profile pop-up
+            document.getElementById("show-profile").style.display = "none";
+            function openProfile() {
+                document.getElementById("show-profile").style.display = "block";
+                closeSettings();
+                closeQuotes();
+                toggleMenu();
+            }
+            document.getElementById('open-profile').addEventListener('click', openProfile);
+            //closes profile pop-up
+            function closeProfile() {
+                document.getElementById("show-profile").style.display = "none";
+            }
+            document.getElementById("profile-exit-btn").addEventListener('click', closeProfile);
+            
+
+            //opens settings pop-up
+            document.getElementById("show-settings").style.display = "none";
+            function openSettings() {
+                document.getElementById("show-settings").style.display = "block";
+                closeProfile();
+                closeQuotes();
+                toggleMenu();
+            }
+            document.getElementById('open-settings').addEventListener('click', openSettings);
+            //closes settings pop-up
+            function closeSettings() {
+                document.getElementById("show-settings").style.display = "none";
+            }
+            document.getElementById("settings-exit-btn").addEventListener('click', closeSettings);
+
+
+            //opens quotes pop-up
+            document.getElementById("show-quotes").style.display = "none";
+            function openQuotes() {
+                document.getElementById("show-quotes").style.display = "block";
+                closeProfile();
+                closeSettings();
+                toggleMenu();
+            }
+            document.getElementById('open-quotes').addEventListener('click', openQuotes);
+            //closes quotes pop-up
+            function closeQuotes() {
+                document.getElementById("show-quotes").style.display = "none";
+            }
+            document.getElementById("quotes-exit-btn").addEventListener('click', closeQuotes);
+
         </script>
     
             
