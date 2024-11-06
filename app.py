@@ -1,8 +1,10 @@
+import datetime
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, UserMixin, login_required, logout_user, current_user
 
 app = Flask(__name__, template_folder = "static/css")
+habits = ["a test habit"]
 app.config['SECRET_KEY'] = 'habitflowsecretkey'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 db = SQLAlchemy(app)
@@ -16,6 +18,13 @@ class HabitUser(UserMixin, db.Model):
     name = db.Column(db.String(150), nullable=False)
     email = db.Column(db.String(150), unique=True, nullable = False)
     password = db.Column(db.String(150), nullable=False)
+
+class Habit(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150), nullable=False)
+    interval = db.Column(db.String(50), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now(datetime.timezone.utc))
+    user_id = db.Column(db.Integer, db.ForeignKey('habit_user.id'), nullable=False)
 
 # DATABASE
 with app.app_context():
@@ -70,16 +79,33 @@ def login():
 
     return render_template('login.html')
 
-@app.route('/tracker')
+@app.route('/tracker', methods=['GET', 'POST'])
 @login_required
 def tracker():
-    return render_template('tracker.html')
+    if request.method == 'POST':
+        habit_name = request.form.get('habit')
+        interval = request.form.get('interval', 'Daily')
+# adds habit
+        new_habit = Habit(name=habit_name, interval=interval, user_id=current_user.id)
+        db.session.add(new_habit)
+        db.session.commit()
+        flash('Habit created.', 'flash-success')
+        return redirect(url_for('tracker'))
+#return func for displaying habit but does not work...
+    user_habits = Habit.query.filter_by(user_id=current_user.id).all()
+    return render_template('tracker.html', habits=user_habits)
 
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+# Functions for backend actions
+
+def date_range(start: datetime.date):
+    dates = [start + datetime.timedelta(days=diff) for diff in range(-3, 4)]
+    return dates
 
 if __name__ == '__main__':
     app.run(debug=True)
