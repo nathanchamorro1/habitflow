@@ -60,8 +60,10 @@
 <!--Main Button for each habit that has been created.-->
             <div class="button_container">
                 <button class="btn" id="habitButton"><span>Habit</span></button>
+                <span class="counter">0</span>
             </div>
 
+<!-- Plus button to click for new habit-->
             <div class="plus_container">
                 <button class="plus" id="addButton"> + </button>
 <!--Form to add a new habit-->
@@ -119,49 +121,99 @@
         </div>
     </div>
 <!--javascript for buttons-->
-    <script>
-        const addButton = document.getElementById('addButton');
-        const overlay = document.getElementById('overlay');
-        const habitButton = document.querySelector('.btn');
-        const colorContainer = document.querySelector('.color_container');
+<script>
+    // Show or hide the form overlay (Plus Button functionality)
+    const addButton = document.getElementById('addButton');
+    const overlay = document.getElementById('overlay');
 
-        addButton.addEventListener('click', function() {
-            if (overlay.style.display === 'none' || overlay.style.display === '') {
-                overlay.style.display = 'block';
-            } else {
-                overlay.style.display = 'none';
-            }
-        });
+    addButton.addEventListener('click', function() {
+        console.log('Add button clicked');
+        if (overlay.style.display === 'none' || overlay.style.display === '') {
+            overlay.style.display = 'block';
+        } else {
+            overlay.style.display = 'none';
+        }
+    });
 
-        habitButton.addEventListener('click', function() {
-            /*habitButton.classList.toggle('clicked');*/
-            colorContainer.style.opacity = '1';
-            colorContainer.style.visibility = 'visible';
+    // Dynamic habit button text functionality
+    const inputField = document.getElementById('habit');
+    const timeField = document.getElementById('time');
+    const ampmField = document.getElementById('ampm');
+    const dayButtons = document.querySelectorAll('.day-btn');
+    const habitDisplayButton = document.getElementById('habitButton');
+    
+    let clickCounter = 0;
 
-            setTimeout(function() {
-                colorContainer.style.opacity = '0';
-                colorContainer.style.visibility = 'hidden';
-            }, 5000);
-        });
+    let counterContainer = document.querySelector('.counter');
 
-        document.getElementById('time').addEventListener('input', function(e) {
-            const value = e.target.value;
-            const timePattern = /^([01]\d|2[0-3]):[0-5]\d$/;
+if (!counterContainer) {
+    counterContainer = document.createElement('span');
+    counterContainer.classList.add('counter'); 
+    counterContainer.style.marginLeft = '5px';
+    habitDisplayButton.parentNode.appendChild(counterContainer);
+}
 
-            if (!timePattern.test(value)) {
-                e.target.setCustomValidity("Please enter a valid time in the format HH:MM (e.g., 09:45)");
-            } else {
-                e.target.setCustomValidity("");
-            }
-        });
-
-        const dayButtons = document.querySelectorAll('.day-btn');
-
+    function getSelectedDays() {
+        const selectedDays = [];
         dayButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                button.classList.toggle('selected');
-            });
+            if (button.classList.contains('selected')) {
+                selectedDays.push(button.dataset.day);
+            }
         });
-    </script>
+        return selectedDays.join(', ') || 'No days selected';
+    }
+
+    function updateButtonText() {
+        const habitName = inputField.value || 'Habit';
+        const time = timeField.value || 'No time set';
+        const ampm = ampmField.value || ''; 
+        const days = getSelectedDays();
+        habitDisplayButton.textContent = `${habitName} - ${time} ${ampm} - ${days}`;
+    }
+
+    habitDisplayButton.addEventListener('click', function() {
+    if (clickCounter === 0) {
+        clickCounter++;
+        counterContainer.textContent = `Clicks: ${clickCounter}`;
+    }
+    updateButtonText();
+});
+
+
+    inputField.addEventListener('input', updateButtonText);
+    timeField.addEventListener('input', updateButtonText);
+    ampmField.addEventListener('change', updateButtonText);
+
+    dayButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            button.classList.toggle('selected');
+            updateButtonText();
+        });
+    });
+
+    const colorContainer = document.querySelector('.color_container');
+    const toggleHabitButton = document.querySelector('.btn');
+    toggleHabitButton.addEventListener('click', function() {
+        colorContainer.style.opacity = '1';
+        colorContainer.style.visibility = 'visible';
+
+        setTimeout(function() {
+            colorContainer.style.opacity = '0';
+            colorContainer.style.visibility = 'hidden';
+        }, 5000);
+    });
+
+    document.getElementById('time').addEventListener('input', function(e) {
+        const value = e.target.value;
+        const timePattern = /^([01]\d|2[0-3]):[0-5]\d$/;
+
+        if (!timePattern.test(value)) {
+            e.target.setCustomValidity("Please enter a valid time in the format HH:MM (e.g., 09:45)");
+        } else {
+            e.target.setCustomValidity("");
+        }
+    });
+</script>
+
 </body>
 </html>
