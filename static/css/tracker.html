@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <title>HabitFlow</title>
-    <link rel="stylesheet" type="text/css" href="static/css/style.cs">
+    <link rel="stylesheet" type="text/css" href="static\css\style.css">
 =======
-    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="static\css\style.css">
     <style>
         #overlay {
             display: none;
@@ -57,6 +57,12 @@
                 </ul>
             </div>
 -->
+    <ul>
+        {% for habit in habits %}
+            <li>{{ habit.name }} - {{ habit.interval }}</li>
+        {% endfor %}
+    </ul>
+
 <!--Main Button for each habit that has been created.-->
             <div class="button_container">
                 <button class="btn" id="habitButton"><span>Habit</span></button>
@@ -66,7 +72,7 @@
                 <button class="plus" id="addButton"> + </button>
 <!--Form to add a new habit-->
                 <section id="overlay">
-                    <form action="#" method="POST">
+                    <form action="{{ url_for('tracker') }}" method="POST">
                         <section class="habit">
                             <label for="habit">Habit:</label>
                             <!--user inputs new habit they want to create-->
