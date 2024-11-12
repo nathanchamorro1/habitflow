@@ -30,7 +30,8 @@
     padding-left: 15px;
     float: left;
     padding-top: 32px;
-    margin-top: 5px;
+    margin-top: 10px;
+    cursor: default;
 }
 
 .menu{
@@ -198,7 +199,7 @@ hr.border{
 
 .user{
     width: 100%;
-    z-index: 2;
+    z-index: 2000;
 }
 
 nav{
@@ -237,6 +238,7 @@ nav ul li{
     max-height: 0px;
     overflow: hidden;
     transition: max-height 0.5s;
+    z-index: 2000;
 }
 
 .menu-wrap.open-menu{
@@ -253,6 +255,7 @@ nav ul li{
 .user-info{
     display: flex;
     align-items: center;
+    z-index: 2000;
 }
 
 .user-info h3{
@@ -515,6 +518,7 @@ nav ul li{
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2000;
 }
 
 .profile-exit{
@@ -586,7 +590,7 @@ nav ul li{
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 2000;
 }
 
 .settings-exit{
@@ -659,7 +663,7 @@ nav ul li{
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 2000;
 }
 
 .quotes-exit{
