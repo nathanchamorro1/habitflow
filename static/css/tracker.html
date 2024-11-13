@@ -3,27 +3,7 @@
 <head>
     <title>HabitFlow</title>
     <link rel="stylesheet" type="text/css" href="static/css/style.cs">
-    <link rel="stylesheet" type="text/css" href="./style.css">
-    <style>
-        #overlay {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        .plus_container {
-            position: relative;
-            text-align: center;
-        }
-    </style>
-</head>
+    <link rel="stylesheet" type="text/css" href="./style.css"></head>
 <body>
     <div class="main">
         <div class="navbar">
@@ -224,8 +204,6 @@
                 overlay.style.display = 'none';
             }
         });
-    
-        // Dynamic habit button text functionality
         const inputField = document.getElementById('habit');
         const timeField = document.getElementById('time');
         const ampmField = document.getElementById('ampm');
@@ -298,7 +276,7 @@
             const timePattern = /^([01]\d|2[0-3]):[0-5]\d$/;
     
             if (!timePattern.test(value)) {
-                e.target.setCustomValidity("Please enter a valid time in the format HH:MM (e.g., 09:45)");
+                e.target.setCustomValidity("Please enter a valid format HH:MM");
             } else {
                 e.target.setCustomValidity("");
             }
