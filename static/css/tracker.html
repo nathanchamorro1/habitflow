@@ -136,7 +136,7 @@
             <hr class="divider">
             <p class="par"><br></p>
 
-            <div class="color_container">
+            <!--<div class="color_container">
                 <ul class="color">
                     <li class="green">S</li>
                     <li class="blue">M</li>
@@ -146,97 +146,157 @@
                     <li class="yellow">F</li>
                     <li class="green">S</li>
                 </ul>
-            </div>
+            </div>-->
 
-            <div class="button_container">
-                <button class="btn" id="habitButton"><span>Habit D T</span></button>
-            </div>
+<!--Main Button for each habit that has been created.-->
+<div class="button_container">
+    <button class="btn" id="habitButton"><span>Habit</span></button>
+    <span class="counter">0</span>
+</div>
 
-            <div class="plus_container">
-                <button class="plus" id="addButton"> + </button>
+<!-- Plus button to click for new habit-->
+<div class="plus_container">
+    <button class="plus" id="addButton"> + </button>
+<!--Form to add a new habit-->
+    <section id="overlay">
+        <form action="#" method="POST">
+            <section class="habit">
+                <label for="habit">Habit:</label>
+                <!--user inputs new habit they want to create-->
+                <input type="text" name="habit" id="habit" placeholder="Enter habit">
+            </section>
+            <!--user selects day(s) they want habit to the habit-->
+            <section class="day-selection">
+                <label>Days:</label>
+                <div class="days-container">
+                    <button type="button" class="day-btn" data-day="Sunday">S</button>
+                    <button type="button" class="day-btn" data-day="Monday">M</button>
+                    <button type="button" class="day-btn" data-day="Tuesday">T</button>
+                    <button type="button" class="day-btn" data-day="Wednesday">W</button>
+                    <button type="button" class="day-btn" data-day="Thursday">T</button>
+                    <button type="button" class="day-btn" data-day="Friday">F</button>
+                    <button type="button" class="day-btn" data-day="Saturday">S</button>
+                </div>
+            </section>
+            <!--user selects time they want to do the habit-->
+            <section class="time-selection">
+                <label for="time">Time:</label>
+                <input type="text" id="time" name="time" placeholder="__:__" 
+                       maxlength="5" 
+                       inputmode="numeric" 
+                       required>
+                <select name="ampm" id="ampm">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+            </section>
+            <!--user selects when they want notification-->
+            <section class="alert">
+                <label for="alert">Alert:</label>
+                <select name="alert" id="alert">
+                    <option value="atTime">At time of event</option>
+                    <option value="15minbf">15 mins before</option>
+                    <option value="30minbf">30 mins before</option>
+                    <option value="1hrbf">1 hour of event</option>
+                    <option value="2hrbf">2 hours before</option>
+                    <option value="1daybf">1 day before</option>
+                </select>
+            </section>
+            <!--user clicks to submit a new habit that would appear as a new habit bar above plus sign-->
+            <section class="submission">
+                <input type="submit" value="Submit">
+            </section>
+        </form>
+    </section>
+</div>
+</div>
+</div>
 
-                <section id="overlay">
-                    <form action="#" method="POST">
-                        <section class="habit">
-                            <label for="habit">Habit</label>
-                            <input type="text" name="habit" id="habit" placeholder="Enter habit">
-                        </section>
-
-                        <section class="day-selection">
-                            <label>Select Days:</label>
-                            <div class="days-container">
-                                <button type="button" class="day-btn" data-day="Sunday">S</button>
-                                <button type="button" class="day-btn" data-day="Monday">M</button>
-                                <button type="button" class="day-btn" data-day="Tuesday">T</button>
-                                <button type="button" class="day-btn" data-day="Wednesday">W</button>
-                                <button type="button" class="day-btn" data-day="Thursday">T</button>
-                                <button type="button" class="day-btn" data-day="Friday">F</button>
-                                <button type="button" class="day-btn" data-day="Saturday">S</button>
-                            </div>
-                        </section>
-
-                        <section class="time-selection">
-                            <label for="time">Select Time:</label>
-                            <input type="text" id="time" name="time" placeholder="__:__" 
-                                   maxlength="5" 
-                                   inputmode="numeric" 
-                                   required>
-                            <select name="ampm" id="ampm">
-                                <option value="AM">AM</option>
-                                <option value="PM">PM</option>
-                            </select>
-                        </section>
-
-                        <section class="alert">
-                            <label for="alert">Alert</label>
-                            <select name="alert" id="alert">
-                                <option value="atTime">At time of event</option>
-                                <option value="15minbf">15 mins before</option>
-                                <option value="30minbf">30 mins before</option>
-                                <option value="1hrbf">1 hour of event</option>
-                                <option value="2hrbf">2 hours before</option>
-                                <option value="1daybf">1 day before</option>
-                            </select>
-                        </section>
-
-                        <section class="submission">
-                            <input type="submit" value="Submit">
-                        </section>
-                    </form>
-                </section>
-            </div>
-        </div>
-    </div>
-
-    <script> /*javascript working for forms attempting to push*/
+    <script> /*javascript working for forms attempting to push*/    // Show or hide the form overlay (Plus Button functionality)
         const addButton = document.getElementById('addButton');
         const overlay = document.getElementById('overlay');
-        const habitButton = document.querySelector('.btn');
-        const colorContainer = document.querySelector('.color_container');
-
+    
         addButton.addEventListener('click', function() {
+            console.log('Add button clicked');
             if (overlay.style.display === 'none' || overlay.style.display === '') {
                 overlay.style.display = 'block';
             } else {
                 overlay.style.display = 'none';
             }
         });
-
-        habitButton.addEventListener('click', function() {
-            /*habitButton.classList.toggle('clicked');*/
+    
+        // Dynamic habit button text functionality
+        const inputField = document.getElementById('habit');
+        const timeField = document.getElementById('time');
+        const ampmField = document.getElementById('ampm');
+        const dayButtons = document.querySelectorAll('.day-btn');
+        const habitDisplayButton = document.getElementById('habitButton');
+        
+        let clickCounter = 0;
+    
+        let counterContainer = document.querySelector('.counter');
+    
+    if (!counterContainer) {
+        counterContainer = document.createElement('span');
+        counterContainer.classList.add('counter'); 
+        counterContainer.style.marginLeft = '5px';
+        habitDisplayButton.parentNode.appendChild(counterContainer);
+    }
+    
+        function getSelectedDays() {
+            const selectedDays = [];
+            dayButtons.forEach(button => {
+                if (button.classList.contains('selected')) {
+                    selectedDays.push(button.dataset.day);
+                }
+            });
+            return selectedDays.join(', ') || 'No days selected';
+        }
+    
+        function updateButtonText() {
+            const habitName = inputField.value || 'Habit';
+            const time = timeField.value || 'No time set';
+            const ampm = ampmField.value || ''; 
+            const days = getSelectedDays();
+            habitDisplayButton.textContent = `${habitName} - ${time} ${ampm} - ${days}`;
+        }
+    
+        habitDisplayButton.addEventListener('click', function() {
+        if (clickCounter === 0) {
+            clickCounter++;
+            counterContainer.textContent = `Clicks: ${clickCounter}`;
+        }
+        updateButtonText();
+    });
+    
+    
+        inputField.addEventListener('input', updateButtonText);
+        timeField.addEventListener('input', updateButtonText);
+        ampmField.addEventListener('change', updateButtonText);
+    
+        dayButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                button.classList.toggle('selected');
+                updateButtonText();
+            });
+        });
+    
+        const colorContainer = document.querySelector('.color_container');
+        const toggleHabitButton = document.querySelector('.btn');
+        toggleHabitButton.addEventListener('click', function() {
             colorContainer.style.opacity = '1';
             colorContainer.style.visibility = 'visible';
-
+    
             setTimeout(function() {
                 colorContainer.style.opacity = '0';
                 colorContainer.style.visibility = 'hidden';
             }, 5000);
         });
-
+    
         document.getElementById('time').addEventListener('input', function(e) {
             const value = e.target.value;
             const timePattern = /^([01]\d|2[0-3]):[0-5]\d$/;
-
+    
             if (!timePattern.test(value)) {
                 e.target.setCustomValidity("Please enter a valid time in the format HH:MM (e.g., 09:45)");
             } else {
