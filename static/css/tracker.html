@@ -31,36 +31,42 @@
                 <h2 class="logo">HabitFlow</h2>
             </div>
 
+            <!-- code for the drop down menu -->
             <div class = "user">
                 <nav>
+                    <!-- icon, in which user can click to toggle drop down menu -->
                     <img src="images/Icon.jpg" class ="user-icon" onclick="toggleMenu()">
                     <div class="menu-wrap" id="subMenu">
                         <div class="menu-sub">
                             <div class="user-info">
+                                <!-- display name and icon of the user -->
                                 <img src="images/Icon.jpg">
                                 <h3>{{ user.name }}</h3>
                             </div>
                             <p>&nbsp</p>
                             <hr>
 
+                            <!-- profile header -->
                             <a href="#card-wrap" class="menu-link" id="open-profile">
                                 <img src="images/profile.png">
                                 <p>Profile</p>
                                 <span>></span>
                             </a>
 
+                            <!-- settings header -->
                             <a href="#" class="menu-link" id="open-settings">
                                 <img src="images/setting.png">
                                 <p>Settings</p>
                                 <span>></span>
                             </a>
 
+                            <!-- quotes header -->
                             <a href="#" class="menu-link" id="open-quotes">
                                 <img src="images/quote.png">
                                 <p>Quotes</p>
                                 <span>></span>
                             </a>
-
+                            <!-- log out header -->
                             <a href="index.html" class="menu-link">
                                 <img src="images/logout.png">
                                 <p>Logout</p>
@@ -71,7 +77,8 @@
                     </div>
                 </nav>
             </div>
-                
+            
+            <!-- shows the profile section, in which user can edit name -->
             <div class="profile-wrap" id ="show-profile">
                 <div class="sub-profile">
                     <div class="profile-header">
@@ -87,6 +94,7 @@
                 </div>
             </div>
             
+            <!-- shows the settings section, in which user can edit email and pass -->
             <div class="settings-wrap" id = "show-settings">
                 <div class ="sub-settings">
                     <div class ="settings-header">
@@ -102,6 +110,7 @@
                 </div>  
             </div> 
 
+            <!-- shows the quotes section -->
             <div class="quotes-wrap" id = "show-quotes">
                 <div class ="sub-quotes">
                     <div class ="quotes-header">
