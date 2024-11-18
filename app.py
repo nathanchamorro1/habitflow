@@ -10,12 +10,20 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-# USER MODEL
+# User model
 class HabitUser(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), nullable=False)
     email = db.Column(db.String(150), unique=True, nullable = False)
     password = db.Column(db.String(150), nullable=False)
+
+# Habit model (just added - saves habit per user)
+
+class Habit(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150), nullable=False)
+    interval = db.Column(db.String(150), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('habit_user.id'), nullable=False)
 
 # DATABASE
 with app.app_context():
@@ -73,7 +81,17 @@ def login():
 @app.route('/tracker')
 @login_required
 def tracker():
-    return render_template('tracker.html')
+    if request.method == 'POST':
+        habit_name = request.form.get('habit')
+        interval = request.form.get('interval', 'Daily')
+        new_habit = Habit(name=habit_name, interval=interval, user_id=current_user.id)
+        db.session.add(new_habit)
+        db.session.commit()
+        flash('Habit added.')
+        return redirect(url_for('tracker'))
+
+    habits = Habit.query.filter_by(user_id=current_user.id).all()
+    return render_template('tracker.html', user=current_user, habits=habits)
 
 @app.route("/logout")
 @login_required
