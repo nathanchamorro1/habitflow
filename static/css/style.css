@@ -61,21 +61,6 @@ ul li a{
     font-weight: bold;
 }
 
-.button{
-    background-color: #7ba365;
-    cursor: pointer;
-    border: none;
-    color:white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    font-size: 16px;
-    border-radius: 15px;
-}
-
 hr.divider{
     border-bottom: 3px solid #adb3a5;
     margin: 15px;
@@ -391,31 +376,29 @@ nav ul li{
 .plus_container {
     position: relative;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
-.button{
-    background-color: #7ba365;
-    cursor: pointer;
-    border: none;
-    color:white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    font-size: 16px;
-    border-radius: 15px;
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 0;
 }
 
 .counter {
     font-size: 28px;
+    font-weight: bold;
     color: #555;
+    margin: 0;
+    padding: 0;
 }
 
 .btn {
+    flex-shrink: 0;
     z-index: 1;
     border: none;
     border-radius: 30px;
@@ -431,7 +414,7 @@ nav ul li{
     font-size: 15px;
     background-color: rgb(255, 255, 255);
     padding: 25px 10px;
-    margin: 0 auto;
+    margin: 0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
     transition: all 0.5s ease-in-out;
     width: 50%;
@@ -441,27 +424,17 @@ nav ul li{
     position: relative;
     z-index: 1;
 }
-
-.btn:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 450%;
-    width: 100%;
-    background: #85ad6f;
-    transition: all 0.5s ease-in-out;
-    transform: translateX(-98%) translateY(-25%) rotate(45deg);
-}
-
-.btn:hover:after {
-    height: 725%;
-    transform: translateX(-5%) translateY(-25%) rotate(45deg);
+.btn:hover {
+    border: 2px solid #85ad6f;
+    background-color: rgb(255, 255, 255);
+    transform: scale(1.05);
 }
 
 .btn.clicked {
     background-color: #85ad6f;
     color: white;
+    border: 1px solid #85ad6f;
+    transform: scale(0.98);
 }
 
 .btn.clicked:after {
@@ -682,10 +655,28 @@ nav ul li{
     display: relative;
 }
 
+section.habit {
+    display: flex;
+    flex-direction: flex; /* Stack label and input vertically */
+    align-items: left; /* Align elements to the left */
+    margin-bottom: 5px; /* Space between sections */
+}
 
-/*=======
-  
-=======*/
+section.habit label {
+    margin-bottom: 5px; /* Space below the label */
+    font-size: 16px;
+}
+
+section.habit input {
+    width: 100%; /* Match other input widths */
+    padding: 5px; /* Ensure consistent padding */
+    text-align: center;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
 .time-selection {
     margin-top: 30px;
     display: flex;

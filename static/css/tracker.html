@@ -129,9 +129,9 @@
             </div>-->
 
 <!--Main Button for each habit that has been created.-->
-<div class="button_container">
-    <button class="btn" id="habitButton"><span>Habit</span></button>
+<div class="button-container">
     <span class="counter">0</span>
+    <button class="btn" id="habitButton"><span>Habit</span></button>
 </div>
 
 <!-- Plus button to click for new habit-->
@@ -192,7 +192,7 @@
 </div>
 </div>
 
-    <script> /*javascript working for forms attempting to push*/    // Show or hide the form overlay (Plus Button functionality)
+    <script> /*javascript*/
         const addButton = document.getElementById('addButton');
         const overlay = document.getElementById('overlay');
     
@@ -209,40 +209,46 @@
         const ampmField = document.getElementById('ampm');
         const dayButtons = document.querySelectorAll('.day-btn');
         const habitDisplayButton = document.getElementById('habitButton');
-        
+        let counterContainer = document.querySelector('.counter');        
         let clickCounter = 0;
-    
-        let counterContainer = document.querySelector('.counter');
-    
+
+        dayButtons.forEach(button => {
+            button.addEventListener('click', function () {
+            button.classList.toggle('selected');
+            updateButtonText();
+            });
+        });
+
     if (!counterContainer) {
         counterContainer = document.createElement('span');
         counterContainer.classList.add('counter'); 
         counterContainer.style.marginLeft = '5px';
         habitDisplayButton.parentNode.appendChild(counterContainer);
     }
-    
-        function getSelectedDays() {
-            const selectedDays = [];
-            dayButtons.forEach(button => {
-                if (button.classList.contains('selected')) {
-                    selectedDays.push(button.dataset.day);
-                }
-            });
-            return selectedDays.join(', ') || 'No days selected';
+
+    function getSelectedDays() {
+    const selectedDays = [];
+    dayButtons.forEach(button => {
+        if (button.classList.contains('selected')) {
+            selectedDays.push(button.dataset.day);
         }
-    
-        function updateButtonText() {
-            const habitName = inputField.value || 'Habit';
-            const time = timeField.value || 'No time set';
-            const ampm = ampmField.value || ''; 
-            const days = getSelectedDays();
-            habitDisplayButton.textContent = `${habitName} - ${time} ${ampm} - ${days}`;
-        }
+    });
+    return selectedDays.join(', ') || 'No days selected';
+}
+
+function updateButtonText() {
+    const selectedDaysText = getSelectedDays();
+    const habitName = document.getElementById('habit').value || 'Habit';
+    const time = document.getElementById('time').value || 'No time set';
+    const ampm = document.getElementById('ampm').value || '';
+    const habitButton = document.getElementById('habitButton');
+    habitButton.textContent = `${habitName} - ${time} ${ampm} - ${selectedDaysText}`;
+}
     
         habitDisplayButton.addEventListener('click', function() {
         if (clickCounter === 0) {
             clickCounter++;
-            counterContainer.textContent = `Clicks: ${clickCounter}`;
+            counterContainer.textContent = `${clickCounter}`;
         }
         updateButtonText();
     });
@@ -252,11 +258,11 @@
         timeField.addEventListener('input', updateButtonText);
         ampmField.addEventListener('change', updateButtonText);
     
-        dayButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                button.classList.toggle('selected');
-                updateButtonText();
-            });
+
+        const button = document.querySelector('.btn');
+
+        button.addEventListener('click', function () {
+            button.classList.toggle('clicked');
         });
     
         const colorContainer = document.querySelector('.color_container');
@@ -341,6 +347,7 @@
             document.getElementById("show-quotes").style.display = "none";
             }
         document.getElementById("quotes-exit-btn").addEventListener('click', closeQuotes);
+        
     </script>
 </body>
 </html>
