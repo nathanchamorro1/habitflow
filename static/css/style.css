@@ -657,19 +657,19 @@ nav ul li{
 
 section.habit {
     display: flex;
-    flex-direction: flex; /* Stack label and input vertically */
-    align-items: left; /* Align elements to the left */
-    margin-bottom: 5px; /* Space between sections */
+    flex-direction: flex;
+    align-items: left;
+    margin-bottom: 5px;
 }
 
 section.habit label {
-    margin-bottom: 5px; /* Space below the label */
+    margin-bottom: 5px;
     font-size: 16px;
 }
 
 section.habit input {
-    width: 100%; /* Match other input widths */
-    padding: 5px; /* Ensure consistent padding */
+    width: 100%;
+    padding: 5px;
     text-align: center;
     margin-left: 10px;
     border: 1px solid #ccc;
