@@ -116,22 +116,14 @@
             <hr class="divider">
             <p class="par"><br></p>
 
-            <!--<div class="color_container">
-                <ul class="color">
-                    <li class="green">S</li>
-                    <li class="blue">M</li>
-                    <li class="red">T</li>     
-                    <li class="purple">W</li>
-                    <li class="cyan">T</li>
-                    <li class="yellow">F</li>
-                    <li class="green">S</li>
-                </ul>
-            </div>-->
-
 <!--Main Button for each habit that has been created.-->
 <div class="button-container">
     <span class="counter">0</span>
     <button class="btn" id="habitButton"><span>Habit</span></button>
+    <div class="habit-actions">
+        <span class="edit-action">Edit</span>
+        <span class="delete-action">Delete</span>
+    </div>
 </div>
 
 <!-- Plus button to click for new habit-->
@@ -323,6 +315,27 @@ function updateButtonText() {
             }
         document.getElementById("quotes-exit-btn").addEventListener('click', closeQuotes);
         
+        // Edit and Delete
+        document.querySelectorAll('.edit-action').forEach(editButton => {
+        editButton.addEventListener('click', function (e) {
+            const habitButton = e.target.closest('.habit-action-container').querySelector('.btn');
+            const currentHabitText = habitButton.textContent;
+
+            const newHabitText = prompt('Edit your habit:', currentHabitText);
+            if (newHabitText) {
+                habitButton.textContent = newHabitText;
+            }
+            });
+        });
+
+        document.querySelectorAll('.delete-action').forEach(deleteButton => {
+            deleteButton.addEventListener('click', function (e) {
+                const habitContainer = e.target.closest('.habit-action-container');
+                if (confirm('Are you sure you want to delete this habit?')) {
+                    habitContainer.remove();
+                }
+            });
+        });
     </script>
 </body>
 </html>
