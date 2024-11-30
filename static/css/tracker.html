@@ -219,12 +219,7 @@
             });
         });
 
-    if (!counterContainer) {
-        counterContainer = document.createElement('span');
-        counterContainer.classList.add('counter'); 
-        counterContainer.style.marginLeft = '5px';
-        habitDisplayButton.parentNode.appendChild(counterContainer);
-    }
+ 
 
     function getSelectedDays() {
     const selectedDays = [];
@@ -252,29 +247,16 @@ function updateButtonText() {
         }
         updateButtonText();
     });
-    
-    
         inputField.addEventListener('input', updateButtonText);
         timeField.addEventListener('input', updateButtonText);
         ampmField.addEventListener('change', updateButtonText);
+
     
 
         const button = document.querySelector('.btn');
 
         button.addEventListener('click', function () {
             button.classList.toggle('clicked');
-        });
-    
-        const colorContainer = document.querySelector('.color_container');
-        const toggleHabitButton = document.querySelector('.btn');
-        toggleHabitButton.addEventListener('click', function() {
-            colorContainer.style.opacity = '1';
-            colorContainer.style.visibility = 'visible';
-    
-            setTimeout(function() {
-                colorContainer.style.opacity = '0';
-                colorContainer.style.visibility = 'hidden';
-            }, 5000);
         });
     
         document.getElementById('time').addEventListener('input', function(e) {
@@ -286,13 +268,6 @@ function updateButtonText() {
             } else {
                 e.target.setCustomValidity("");
             }
-        });
-
-
-        dayButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                button.classList.toggle('selected');
-            });
         });
 
         //opens and closes drop-down menu
