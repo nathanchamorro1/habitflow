@@ -2,40 +2,8 @@
 <html lang="en">
 <head>
     <title>HabitFlow</title>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <link rel="stylesheet" type="text/css" href="static\css\style.css">
-=======
-<<<<<<< HEAD
-    <link rel="stylesheet" type="text/css" href="static/css/style.cs">
->>>>>>> 320c050f12f803a1b918a0afcf4b5dbfad2468bf
-=======
-    <link rel="stylesheet" type="text/css" href="static\css\style.css">
-    <style>
-        #overlay {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-
-        .plus_container {
-            position: relative;
-            text-align: center;
-        }
-    </style>
-</head>
-=======
-    <link rel="stylesheet" type="text/css" href="static/css/style.cs">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
     <link rel="stylesheet" type="text/css" href="./style.css"></head>
->>>>>>> b24a5dfe7b2d8c431b82fc5e0036726ba02bd23d
 <body>
     <div class="main">
         <div class="navbar">
@@ -47,12 +15,12 @@
             <div class = "user">
                 <nav>
                     <!-- icon, in which user can click to toggle drop down menu -->
-                    <img src="static\css\images\Icon.jpg" class ="user-icon" onclick="toggleMenu()">
+                    <img src="images/Icon.jpg" class ="user-icon" onclick="toggleMenu()">
                     <div class="menu-wrap" id="subMenu">
                         <div class="menu-sub">
                             <div class="user-info">
                                 <!-- display name and icon of the user -->
-                                <img src="static\css\images\Icon.jpg">
+                                <img src="images/Icon.jpg">
                                 <h3>{{ user.name }}</h3>
                             </div>
                             <p>&nbsp</p>
@@ -60,27 +28,27 @@
 
                             <!-- profile header -->
                             <a href="#card-wrap" class="menu-link" id="open-profile">
-                                <img src="static\css\images\profile.png">
+                                <img src="images/profile.png">
                                 <p>Profile</p>
                                 <span>></span>
                             </a>
 
                             <!-- settings header -->
                             <a href="#" class="menu-link" id="open-settings">
-                                <img src="static\css\images\setting.png">
+                                <img src="images/setting.png">
                                 <p>Settings</p>
                                 <span>></span>
                             </a>
 
                             <!-- quotes header -->
                             <a href="#" class="menu-link" id="open-quotes">
-                                <img src="static\css\images\quote.png">
+                                <img src="images/quote.png">
                                 <p>Quotes</p>
                                 <span>></span>
                             </a>
                             <!-- log out header -->
                             <a href="index.html" class="menu-link">
-                                <img src="static\css\images\logout.png">
+                                <img src="images/logout.png">
                                 <p>Logout</p>
                                 <span>></span>
                             </a>
@@ -94,9 +62,9 @@
             <div class="profile-wrap" id ="show-profile">
                 <div class="sub-profile">
                     <div class="profile-header">
-                        <img src="static\css\images\x.png" class ="profile-exit" id="profile-exit-btn">
+                        <img src="images/x.png" class ="profile-exit" id="profile-exit-btn">
                         <h3>Profile</h3>
-                        <img src="static\css\images\Icon.jpg" class ="profile-icon">
+                        <img src="images/Icon.jpg" class ="profile-icon">
                         <p>&nbsp</p>
                         <input type="text" id="name" name="name" placeholder="Your Name" required class="profile-name">
                         <p>&nbsp</p>
@@ -110,7 +78,7 @@
             <div class="settings-wrap" id = "show-settings">
                 <div class ="sub-settings">
                     <div class ="settings-header">
-                        <img src="static\css\images\x.png" class ="settings-exit" id = "settings-exit-btn">
+                        <img src="images/x.png" class ="settings-exit" id = "settings-exit-btn">
                         <h3>Settings</h3>
                         <p>&nbsp</p>
                         <input type="email" id="email" name="email" placeholder="Email" required class="change-settings">
@@ -126,7 +94,7 @@
             <div class="quotes-wrap" id = "show-quotes">
                 <div class ="sub-quotes">
                     <div class ="quotes-header">
-                        <img src="static\css\images\x.png" class ="quotes-exit" id = "quotes-exit-btn">
+                        <img src="images/x.png" class ="quotes-exit" id = "quotes-exit-btn">
                         <h3>Quotes</h3>
                         <p>&nbsp</p>
                         <p>"Keep your face always toward the sunshine, and shadows will fall behind you." — Walt Whitman</p><br>
@@ -148,42 +116,15 @@
             <hr class="divider">
             <p class="par"><br></p>
 
-            <!--<div class="color_container">
-                <ul class="color">
-                    <li class="green">S</li>
-                    <li class="blue">M</li>
-                    <li class="red">T</li>     
-                    <li class="purple">W</li>
-                    <li class="cyan">T</li>
-                    <li class="yellow">F</li>
-                    <li class="green">S</li>
-                </ul>
-<<<<<<< HEAD
-            </div>
-<<<<<<< HEAD
--->
-    <ul>
-        {% for habit in habits %}
-            <li>{{ habit.name }} - {{ habit.interval }}</li>
-        {% endfor %}
-    </ul>
-
 <!--Main Button for each habit that has been created.-->
-=======
-
->>>>>>> 320c050f12f803a1b918a0afcf4b5dbfad2468bf
-            <div class="button_container">
-                <button class="btn" id="habitButton"><span>Habit D T</span></button>
-            </div>
-=======
-            </div>-->
-
-<!--Main Button for each habit that has been created.-->
-<div class="button_container">
-    <button class="btn" id="habitButton"><span>Habit</span></button>
+<div class="button-container">
     <span class="counter">0</span>
+    <button class="btn" id="habitButton"><span>Habit</span></button>
+    <div class="habit-actions">
+        <span class="edit-action">Edit</span>
+        <span class="delete-action">Delete</span>
+    </div>
 </div>
->>>>>>> b24a5dfe7b2d8c431b82fc5e0036726ba02bd23d
 
 <!-- Plus button to click for new habit-->
 <div class="plus_container">
@@ -196,7 +137,7 @@
                 <!--user inputs new habit they want to create-->
                 <input type="text" name="habit" id="habit" placeholder="Enter habit">
             </section>
-            <!--user selects day(s) they want habit to the habit-->
+            <!--user selects day they want habit to the habit-->
             <section class="day-selection">
                 <label>Days:</label>
                 <div class="days-container">
@@ -243,62 +184,7 @@
 </div>
 </div>
 
-<<<<<<< HEAD
-                <section id="overlay">
-                    <form action="{{ url_for('tracker') }}" method="POST">
-                        <section class="habit">
-                            <label for="habit">Habit</label>
-                            <input type="text" name="habit" id="habit" placeholder="Enter habit">
-                        </section>
-
-                        <section class="day-selection">
-                            <label>Select Days:</label>
-                            <div class="days-container">
-                                <button type="button" class="day-btn" data-day="Sunday">S</button>
-                                <button type="button" class="day-btn" data-day="Monday">M</button>
-                                <button type="button" class="day-btn" data-day="Tuesday">T</button>
-                                <button type="button" class="day-btn" data-day="Wednesday">W</button>
-                                <button type="button" class="day-btn" data-day="Thursday">T</button>
-                                <button type="button" class="day-btn" data-day="Friday">F</button>
-                                <button type="button" class="day-btn" data-day="Saturday">S</button>
-                            </div>
-                        </section>
-
-                        <section class="time-selection">
-                            <label for="time">Select Time:</label>
-                            <input type="text" id="time" name="time" placeholder="__:__" 
-                                   maxlength="5" 
-                                   inputmode="numeric" 
-                                   required>
-                            <select name="ampm" id="ampm">
-                                <option value="AM">AM</option>
-                                <option value="PM">PM</option>
-                            </select>
-                        </section>
-
-                        <section class="alert">
-                            <label for="alert">Alert</label>
-                            <select name="alert" id="alert">
-                                <option value="atTime">At time of event</option>
-                                <option value="15minbf">15 mins before</option>
-                                <option value="30minbf">30 mins before</option>
-                                <option value="1hrbf">1 hour of event</option>
-                                <option value="2hrbf">2 hours before</option>
-                                <option value="1daybf">1 day before</option>
-                            </select>
-                        </section>
-
-                        <section class="submission">
-                            <input type="submit" value="Submit">
-                        </section>
-                    </form>
-                </section>
-            </div>
-        </div>
-    </div>
-
-    <script> /*javascript working for forms attempting to push*/    // Show or hide the form overlay (Plus Button functionality)
-
+    <script> /*javascript*/
         const addButton = document.getElementById('addButton');
         const overlay = document.getElementById('overlay');
     
@@ -315,66 +201,54 @@
         const ampmField = document.getElementById('ampm');
         const dayButtons = document.querySelectorAll('.day-btn');
         const habitDisplayButton = document.getElementById('habitButton');
-        
+        let counterContainer = document.querySelector('.counter');        
         let clickCounter = 0;
-    
-        let counterContainer = document.querySelector('.counter');
-    
-    if (!counterContainer) {
-        counterContainer = document.createElement('span');
-        counterContainer.classList.add('counter'); 
-        counterContainer.style.marginLeft = '5px';
-        habitDisplayButton.parentNode.appendChild(counterContainer);
-    }
-    
-        function getSelectedDays() {
-            const selectedDays = [];
-            dayButtons.forEach(button => {
-                if (button.classList.contains('selected')) {
-                    selectedDays.push(button.dataset.day);
-                }
+
+        dayButtons.forEach(button => {
+            button.addEventListener('click', function () {
+            button.classList.toggle('selected');
+            updateButtonText();
             });
-            return selectedDays.join(', ') || 'No days selected';
+        });
+
+ 
+
+    function getSelectedDays() {
+    const selectedDays = [];
+    dayButtons.forEach(button => {
+        if (button.classList.contains('selected')) {
+            selectedDays.push(button.dataset.day);
         }
-    
-        function updateButtonText() {
-            const habitName = inputField.value || 'Habit';
-            const time = timeField.value || 'No time set';
-            const ampm = ampmField.value || ''; 
-            const days = getSelectedDays();
-            habitDisplayButton.textContent = `${habitName} - ${time} ${ampm} - ${days}`;
-        }
+    });
+    return selectedDays.join(', ') || 'No days selected';
+}
+
+function updateButtonText() {
+    const selectedDaysText = getSelectedDays();
+    const habitName = document.getElementById('habit').value || 'Habit';
+    const time = document.getElementById('time').value || 'No time set';
+    const ampm = document.getElementById('ampm').value || '';
+    const habitButton = document.getElementById('habitButton');
+    habitButton.textContent = `${habitName} - ${time} ${ampm} - ${selectedDaysText}`;
+}
     
         habitDisplayButton.addEventListener('click', function() {
         if (clickCounter === 0) {
             clickCounter++;
-            counterContainer.textContent = `Clicks: ${clickCounter}`;
+            counterContainer.textContent = `${clickCounter}`;
         }
         updateButtonText();
     });
-    
-    
         inputField.addEventListener('input', updateButtonText);
         timeField.addEventListener('input', updateButtonText);
         ampmField.addEventListener('change', updateButtonText);
+
     
-        dayButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                button.classList.toggle('selected');
-                updateButtonText();
-            });
-        });
-    
-        const colorContainer = document.querySelector('.color_container');
-        const toggleHabitButton = document.querySelector('.btn');
-        toggleHabitButton.addEventListener('click', function() {
-            colorContainer.style.opacity = '1';
-            colorContainer.style.visibility = 'visible';
-    
-            setTimeout(function() {
-                colorContainer.style.opacity = '0';
-                colorContainer.style.visibility = 'hidden';
-            }, 5000);
+
+        const button = document.querySelector('.btn');
+
+        button.addEventListener('click', function () {
+            button.classList.toggle('clicked');
         });
     
         document.getElementById('time').addEventListener('input', function(e) {
@@ -386,13 +260,6 @@
             } else {
                 e.target.setCustomValidity("");
             }
-        });
-
-
-        dayButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                button.classList.toggle('selected');
-            });
         });
 
         //opens and closes drop-down menu
@@ -447,6 +314,28 @@
             document.getElementById("show-quotes").style.display = "none";
             }
         document.getElementById("quotes-exit-btn").addEventListener('click', closeQuotes);
+        
+        // Edit and Delete
+        document.querySelectorAll('.edit-action').forEach(editButton => {
+        editButton.addEventListener('click', function (e) {
+            const habitButton = e.target.closest('.habit-action-container').querySelector('.btn');
+            const currentHabitText = habitButton.textContent;
+
+            const newHabitText = prompt('Edit your habit:', currentHabitText);
+            if (newHabitText) {
+                habitButton.textContent = newHabitText;
+            }
+            });
+        });
+
+        document.querySelectorAll('.delete-action').forEach(deleteButton => {
+            deleteButton.addEventListener('click', function (e) {
+                const habitContainer = e.target.closest('.habit-action-container');
+                if (confirm('Are you sure you want to delete this habit?')) {
+                    habitContainer.remove();
+                }
+            });
+        });
     </script>
 </body>
 </html>
