@@ -67,6 +67,28 @@ hr.divider{
     width: 1200px;
 }
 
+.button{
+    background-color: #85ad6f;
+    border: none;
+    color:white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 15px;
+}
+
+.index-icon{
+    float: right;
+    margin-right: 5%;
+    margin-top: 3%;
+    width: 30%;
+    
+}
+
 .content{
     width: 1200px;
     height: auto;
@@ -74,6 +96,7 @@ hr.divider{
     color: black;
     position: relative;
 }
+
 
 .content .par{
     font-size: 20px;
