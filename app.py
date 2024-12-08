@@ -1,3 +1,4 @@
+from flask_migrate import Migrate
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, UserMixin, login_required, logout_user, current_user
@@ -9,6 +10,7 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+migrate = Migrate(app, db)
 
 # User model
 class HabitUser(UserMixin, db.Model):
@@ -17,7 +19,6 @@ class HabitUser(UserMixin, db.Model):
     email = db.Column(db.String(150), unique=True, nullable = False)
     password = db.Column(db.String(150), nullable=False)
 
-    # Make sure id/username is sent to profile dropdown
 
 # Habit model (just added - saves habit per user)
 
@@ -25,6 +26,7 @@ class Habit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), nullable=False)
     interval = db.Column(db.String(150), nullable=False)
+    counter = db.Column(db.Integer, default=0) 
     user_id = db.Column(db.Integer, db.ForeignKey('habit_user.id'), nullable=False)
 
 # DATABASE
@@ -80,20 +82,81 @@ def login():
 
     return render_template('login.html')
 
-@app.route('/tracker')
+@app.route('/tracker', methods=['GET', 'POST'])
 @login_required
 def tracker():
     if request.method == 'POST':
-        habit_name = request.form.get('habit')
-        interval = request.form.get('interval', 'Daily')
+        data = request.get_json()
+        habit_name = data.get('habit')
+        interval = data.get('interval', 'Daily')
         new_habit = Habit(name=habit_name, interval=interval, user_id=current_user.id)
         db.session.add(new_habit)
         db.session.commit()
-        flash('Habit added.')
-        return redirect(url_for('tracker'))
+        return {"id": new_habit.id}, 201
 
     habits = Habit.query.filter_by(user_id=current_user.id).all()
     return render_template('tracker.html', user=current_user, habits=habits)
+
+@app.route("/edit_habit/<int:habit_id>", methods=['POST'])
+@login_required
+def edit_habit(habit_id):
+    habit = Habit.query.get_or_404(habit_id)
+
+    data = request.get_json()  # Handle JSON data from the frontend
+    habit.name = data.get('name')
+    db.session.commit()
+
+    flash('Habit updated successfully.', 'flash-success')
+    return redirect(url_for('tracker'))
+
+@app.route("/delete_habit/<int:habit_id>", methods=['POST'])
+@login_required
+def delete_habit(habit_id):
+    habit = Habit.query.get_or_404(habit_id)
+
+    db.session.delete(habit)
+    db.session.commit()
+
+    flash('Habit deleted successfully.', 'flash-success')
+    return redirect(url_for('tracker'))
+
+@app.route("/update_habit_counter/<int:habit_id>", methods=['POST'])
+@login_required
+def update_habit_counter(habit_id):
+    habit = Habit.query.get_or_404(habit_id)
+    data = request.get_json()
+    habit.counter = data.get('count', habit.counter)
+    db.session.commit()
+    return {"success": True}, 200
+
+@app.route('/update_profile', methods=['POST'])
+@login_required
+def update_profile():
+    new_name = request.form.get('name')
+    if new_name:
+        current_user.name = new_name
+        db.session.commit()
+        flash('Profile updated successfully!', 'flash-success')
+    else:
+        flash('Name cannot be empty.', 'flash-error')
+    return redirect(url_for('tracker'))
+
+
+@app.route('/update_settings', methods=['POST'])
+@login_required
+def update_settings():
+    data = request.json
+    new_email = data.get('email')
+    new_password = data.get('password')
+
+    if new_email:
+        current_user.email = new_email
+    if new_password:
+        current_user.password = new_password
+    db.session.commit()
+
+    return {"success": True}, 200
+
 
 @app.route("/logout")
 @login_required

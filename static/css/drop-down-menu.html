@@ -26,7 +26,7 @@
 
                             <a href="#card-wrap" class="menu-link" id="open-profile">
                                 <img src="images/profile.png">
-                                <p>Profile</p>
+                                <p>Profile lol</p>
                                 <span>></span>
                             </a>
 
@@ -42,11 +42,12 @@
                                 <span>></span>
                             </a>
 
-                            <a href="index.html" class="menu-link">
-                                <img src="images/logout.png">
+                            <a href="/logout" class="menu-link">
+                                <img src="static/css/images/logout.png">
                                 <p>Logout</p>
                                 <span>></span>
                             </a>
+                            
 
                         </div>
                     </div>
@@ -57,7 +58,7 @@
                 <div class="sub-profile">
                     <div class="profile-header">
                         <img src="images/x.png" class ="profile-exit" id="profile-exit-btn">
-                        <h3>Profile</h3>
+                        <h3>Profile t</h3>
                         <img src="images/Icon.jpg" class ="profile-icon">
                         <p>&nbsp</p>
                         <input type="text" id="name" name="name" placeholder="Your Name" required class="profile-name">
@@ -67,6 +68,7 @@
                         
                 </div>
             </div>
+            
             
             <div class="settings-wrap" id = "show-settings">
                 <div class ="sub-settings">
@@ -158,6 +160,52 @@
                 document.getElementById("show-quotes").style.display = "none";
             }
             document.getElementById("quotes-exit-btn").addEventListener('click', closeQuotes);
+
+            // profile save functionality
+
+            document.querySelector('.profile-save').addEventListener('click', () => {
+    const newName = document.querySelector('.profile-name').value;
+    fetch('/update_profile', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({ name: newName }),
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Profile updated successfully!');
+            closeProfile();
+            location.reload();
+        } else {
+            alert('Error updating profile.');
+        }
+    });
+});
+
+// save settings functionality
+
+document.querySelector('.settings-save').addEventListener('click', () => {
+    const newEmail = document.querySelector('.change-settings').value;
+    const newPassword = document.querySelector('.change-password').value;
+
+    fetch('/update_settings', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({ email: newEmail, password: newPassword }),
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Settings updated successfully!');
+            closeSettings();
+        } else {
+            alert('Error updating settings.');
+        }
+    });
+});
+
 
         </script>
     
