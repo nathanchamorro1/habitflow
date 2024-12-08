@@ -822,4 +822,12 @@ section.habit input {
 .submission input[type="submit"]:active {
     background-color: #6b8e57;
     transform: translateY(1px);
-} /*css*/
+}
+
+#show-profile,
+#show-settings,
+#show-quotes {
+    display: none;
+}
+
+/*css*/
