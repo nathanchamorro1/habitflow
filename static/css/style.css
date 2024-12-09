@@ -79,6 +79,7 @@ hr.divider{
     font-weight: bold;
     font-size: 16px;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 .index-icon{
