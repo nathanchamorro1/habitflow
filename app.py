@@ -2,6 +2,10 @@ from flask_migrate import Migrate
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, UserMixin, login_required, logout_user, current_user
+from flask_mail import Mail, Message
+from datetime import datetime, timedelta
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.interval import IntervalTrigger
 
 app = Flask(__name__, template_folder = "static/css")
 app.config['SECRET_KEY'] = 'habitflowsecretkey'
@@ -11,6 +15,16 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 migrate = Migrate(app, db)
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USERNAME'] = 't4416706@gmail.com'
+app.config['MAIL_PASSWORD'] = 'agsj lyzs phua pfzm'
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+mail = Mail(app)
+scheduler = BackgroundScheduler()
+
 
 # User model
 
@@ -27,6 +41,8 @@ class Habit(db.Model):
     name = db.Column(db.String(150), nullable=False)
     interval = db.Column(db.String(150), nullable=False)
     counter = db.Column(db.Integer, default=0) 
+    alert = db.Column(db.String(50), nullable=True)
+    last_notified_time = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('habit_user.id'), nullable=False)
 
 # Create database tables
@@ -101,7 +117,8 @@ def tracker():
         data = request.get_json(silent=True)
         habit_name = data.get('habit')
         interval = data.get('interval', 'Daily')
-        new_habit = Habit(name=habit_name, interval=interval, user_id=current_user.id)
+        alert = data.get('alert')
+        new_habit = Habit(name=habit_name, interval=interval, alert=alert, user_id=current_user.id)
         db.session.add(new_habit)
         db.session.commit()
         return {"id": new_habit.id}
@@ -180,6 +197,68 @@ def update_settings():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+
+# function that calculates alert date and time
+def alert_time(interval, alert):
+    time_str, days_str = interval.split(' - ')
+    habit_time = datetime.strptime(time_str, '%I:%M %p').time()
+    alert_map = {
+        'None' : timedelta(0),
+        "atTime" : timedelta(0),
+        "15minbf" : timedelta(minutes=15),
+        "30minbf" : timedelta(minutes=30),
+        "1hrbf": timedelta(hours=1),
+        "2hrbf": timedelta(hours=2),
+        "1daybf": timedelta(days=1),
+    }
+    alert_delta = alert_map.get(alert, timedelta())
+    
+    day_map = {
+        "Sunday": 6, "Monday": 0, "Tuesday": 1, "Wednesday": 2,
+        "Thursday": 3, "Friday": 4, "Saturday": 5
+    }
+
+    # turns selected days into lists
+    days = days_str.split(', ')
+    selected_days = [day_map[day] for day in days]
+
+    # get current day of the week 
+    now = datetime.now()
+    today = now.weekday()
+
+    all_alerts = []
+    for day in selected_days:
+        count_down_days = (day - today) % 7
+        habit_date = now.date() + timedelta()
+        original_date = datetime.combine(habit_date, habit_time)
+        alert_dates = original_date - alert_delta
+        all_alerts.append(alert_dates)
+    return all_alerts
+
+# function that sends timed notiification
+def send_notification():
+    print("Running notification task...")
+    with app.app_context():
+        curr_time = datetime.now().replace(second=0, microsecond=0)
+        habits = Habit.query.all()
+        for habit in habits:
+            all_alerts = alert_time(habit.interval, habit.alert)
+            for alert in all_alerts:
+                if abs((alert - curr_time).total_seconds()) <= 60:
+                    # checks if email has already been sent
+                    if not habit.last_notified_time:
+                        user = HabitUser.query.get(habit.user_id)
+                        if user:
+                            msg = Message('Habit Tracker Reminder', sender='t4416706@gmail.com', recipients=[user.email])
+                            msg.body = f'Habit reminder to {habit.name}'
+                            mail.send(msg)
+                            print(f"Email sent to {user.email} for habit {habit.name} at {alert}")
+                            habit.last_notified_time = True
+                            db.session.commit()
+
+scheduler.start()
+scheduler.add_job(send_notification, trigger=IntervalTrigger(minutes=1), misfire_grace_time=60, coalesce=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
