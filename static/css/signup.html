@@ -14,7 +14,7 @@
             <div class="menu">
                 <ul>
                     <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
-                    <li><a href="{{ url_for('login') }}"><button class="button">Log In</button></a></li>
+                    <li><a href="{{ url_for('login') }}"><button class="login-button">Log In</button></a></li>
                 </ul>
             </div>
             {% with messages = get_flashed_messages(with_categories=true) %}
