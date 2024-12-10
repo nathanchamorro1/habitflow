@@ -470,6 +470,8 @@ document.querySelector('#add-habit-form').addEventListener('submit', async funct
     const selectedDays = getSelectedDays();
     const time = document.getElementById('time').value;
     const ampm = document.getElementById('ampm').value;
+    const alert = document.getElementById('alert').value;
+    console.log(alert);
 
     if (habitName === '') {
         alert('Enter a habit name.');
@@ -487,12 +489,14 @@ document.querySelector('#add-habit-form').addEventListener('submit', async funct
         payload = JSON.stringify({
             name: habitName,
             interval: `${time} ${ampm} - ${selectedDays}`,
+            alert: alert,
         });
     } else {
         // create new habit
         payload = JSON.stringify({
             habit: habitName,
             interval: `${time} ${ampm} - ${selectedDays}`,
+            alert: alert,
         });
     }
 

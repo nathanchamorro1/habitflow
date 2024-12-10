@@ -260,5 +260,5 @@ def send_notification():
 scheduler.start()
 scheduler.add_job(send_notification, trigger=IntervalTrigger(minutes=1), misfire_grace_time=60, coalesce=True)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
