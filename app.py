@@ -135,6 +135,8 @@ def edit_habit(habit_id):
 
     habit.name = data.get('name', habit.name)
     habit.interval = data.get('interval', habit.interval)
+    habit.alert = data.get('alert', habit.alert)
+    habit.last_notified_time = False
     db.session.commit()
 
     flash('Habit updated successfully.', 'flash-success')
@@ -230,7 +232,7 @@ def alert_time(interval, alert):
     all_alerts = []
     for day in selected_days:
         count_down_days = (day - today) % 7
-        habit_date = now.date() + timedelta()
+        habit_date = now.date() + timedelta(count_down_days)
         original_date = datetime.combine(habit_date, habit_time)
         alert_dates = original_date - alert_delta
         all_alerts.append(alert_dates)
@@ -251,7 +253,7 @@ def send_notification():
                         user = HabitUser.query.get(habit.user_id)
                         if user:
                             msg = Message('Habit Tracker Reminder', sender='t4416706@gmail.com', recipients=[user.email])
-                            msg.body = f'Habit reminder to {habit.name}'
+                            msg.body = f'Hey {user.name}, \nThis is your friendly reminder to {habit.name} at {habit.interval}'
                             mail.send(msg)
                             print(f"Email sent to {user.email} for habit {habit.name} at {alert}")
                             habit.last_notified_time = True
