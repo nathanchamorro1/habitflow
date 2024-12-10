@@ -137,8 +137,8 @@
     <!-- new habits created (uses same attr. as the preview) -->
     {% for habit in habits %}
         <div class="button-container" data-habit-id="{{ habit.id }}">
-            <span class="counter">0</span>
-            <button class="btn" id="habitButton">{{ habit.name }} - {{ habit.interval }}</button>
+            <span class="counter">{{ habit.counter }}</span>
+            <button class="btn" id="habitButton">{{ habit.name }} - {{ habit.interval }} - {{ habit.alert }}</button>
             <div class="habit-actions">
                 <span class="edit-action">Edit</span>
                 <span class="delete-action">Delete</span>
@@ -391,6 +391,7 @@ function updateButtonText() {
     const habitName = parts[0]; // this is for the habit name
     const timePart = parts[1]; // this is for time
     const daysPart = parts[2]; // this is for interval
+    const alertValue = parts[3];
 
     // populate form with existing data
 
@@ -401,6 +402,8 @@ function updateButtonText() {
     const [timeValue, ampmValue] = timePart.split(' ');
     document.getElementById('time').value = timeValue;
     document.getElementById('ampm').value = ampmValue;
+
+    document.getElementById('alert').value = alertValue;
 
     // select the days
     const selectedDaysArray = daysPart.split(', ');
@@ -414,6 +417,7 @@ function updateButtonText() {
 
     // display the form
     document.getElementById('overlay').style.display = 'block';
+
 }
 
 // delete function
@@ -471,7 +475,6 @@ document.querySelector('#add-habit-form').addEventListener('submit', async funct
     const time = document.getElementById('time').value;
     const ampm = document.getElementById('ampm').value;
     const alert = document.getElementById('alert').value;
-    console.log(alert);
 
     if (habitName === '') {
         alert('Enter a habit name.');
@@ -518,6 +521,7 @@ document.querySelector('#add-habit-form').addEventListener('submit', async funct
         const habitContainer = document.querySelector(`[data-habit-id="${editingHabitId}"]`);
         const habitButton = habitContainer.querySelector('.btn');
         habitButton.textContent = `${habitName} - ${time} ${ampm} - ${selectedDays}`;
+        
 
         // go back to normal mode when editing is done
         editingHabitId = null;
