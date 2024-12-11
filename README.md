@@ -3,11 +3,11 @@
 
 IMPORTANT: To run HabitFlow locally, you must install these modules before you run it:
 
-Flask: pip install flask
-Flask-Login: pip install flask-login
-Flask-Migrate: pip install flask-migrate
-SQLALchemy: pip install sqlalchemy
-Flask-Mail: pip install flask-mail
+Flask: pip install flask |
+Flask-Login: pip install flask-login |
+Flask-Migrate: pip install flask-migrate |
+SQLALchemy: pip install sqlalchemy |
+Flask-Mail: pip install flask-mail |
 APScheduler: pip install apscheduler
 
 **To run the program, simply use the command "python -m flask run" in your integrated terminal from app.py.**
