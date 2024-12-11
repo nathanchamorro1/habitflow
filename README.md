@@ -1,9 +1,7 @@
-# About HabitFlow
-# To run the program for testing, use python -m flask run.
-# Keeping track of habits and routines can be quite difficult for many people. In order to encourage more people to create and maintain habits, we wanted to create a website in order to motivate people. 
+# HabitFlow
+# Keeping track of habits and routines can be quite difficult for many people. In order to encourage more people to create and maintain habits, we wanted to create a website in order to motivate people
 
-READ FIRST:
-To run HabitFlow locally, you must install these modules before you run it:
+IMPORTANT: To run HabitFlow locally, you must install these modules before you run it:
 
 Flask: pip install flask
 Flask-Login: pip install flask-login
